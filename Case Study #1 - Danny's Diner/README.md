@@ -4,18 +4,19 @@
 ### **Introduction**
 "Danny's Diner" specializes in sushi, curry, and ramen. The diner has captured basic operational data but needs assistance in leveraging this information to enhance customer service and operational efficiency.
 
-## **Problem Statement**
+### **Problem Statement**
 The goal is to analyze customer behavior, including visit patterns and spending habits, to personalize their dining experience. Insights from the data will also determine the viability of expanding the loyalty program and provide Danny's team with accessible datasets for ongoing analysis.
 
-## **Entity Relationship Diagram**
+### **Entity Relationship Diagram**
 ![image](https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/c0642090-69a8-472c-a4bc-82d1e3a34269)
 
-## **Tables Overview**
+### **Tables Overview**
 Table 1 - Sales: Transactions recorded with customer IDs, order dates, and product IDs.
 Table 2 - Menu: Details of each menu item including product ID, name, and price.
 Table 3 - Members: Records of when customers joined the loyalty program.
 
-Case Study Questions
+
+### **Case Study Questions**
 - What is the total amount each customer spent at the restaurant?
 - How many days has each customer visited the restaurant?
 - What was the first item from the menu purchased by each customer?
