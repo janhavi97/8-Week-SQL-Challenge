@@ -50,7 +50,10 @@ LIMIT 1;
 SELECT a.customer_id, a.product_name, a.product_count
 FROM
     (
-        SELECT s.customer_id, p.product_name, COUNT(p.product_name) AS product_count, RANK() OVER(PARTITION BY s.customer_id ORDER BY COUNT(p.product_name) DESC) AS RNK1
+        SELECT s.customer_id, 
+               p.product_name, 
+               COUNT(p.product_name) AS product_count, 
+               RANK() OVER(PARTITION BY s.customer_id ORDER BY COUNT(p.product_name) DESC) AS RNK1
         FROM dannys_diner.sales s
         JOIN dannys_diner.menu p
         ON s.product_id = p.product_id
@@ -82,7 +85,9 @@ WHERE RNK1 = 1;
 SELECT customer_id, product_name
 FROM
     (
-        SELECT s.customer_id, p.product_name, RANK() OVER(PARTITION BY s.customer_id ORDER BY s.order_date DESC) AS RNK1
+        SELECT s.customer_id, 
+               p.product_name, 
+               RANK() OVER(PARTITION BY s.customer_id ORDER BY s.order_date DESC) AS RNK1
         FROM dannys_diner.sales s
         JOIN dannys_diner.menu p
         ON s.product_id = p.product_id
@@ -133,11 +138,41 @@ ON s.product_id = p.product_id
 JOIN dannys_diner.members m 
 ON s.customer_id = m.customer_id
 WHERE s.order_date <= '2021-01-31'
+AND s.order_date >= m.join_date
 GROUP BY s.customer_id;
+-- Customer A has 1020 points
+-- Customer B has 320 points
 
 
 --Join All The Things (Recreate the table with: customer_id, order_date, product_name, price, member (Y/N))
+WITH dannys_dinner_all AS (
+SELECT 
+  s.customer_id, 
+  s.order_date,  
+  p.product_name, 
+  p.price,
+  CASE WHEN m.join_date <= s.order_date THEN 'Y'
+       ELSE 'N' 
+  END AS member_status
+FROM dannys_diner.sales s
+JOIN dannys_diner.menu p
+ON s.product_id = p.product_id
+LEFT JOIN dannys_diner.members m
+ON s.customer_id = m.customer_id
+ORDER BY m.customer_id, s.order_date
+)
 
+SELECT * FROM dannys_dinner_all
 
 
 --Rank All The Things (Rank customer products but only for the records when customers are member)
+SELECT *, CASE WHEN member_status = 'N' then NULL 
+			         ELSE RANK () OVER (PARTITION BY customer_id, member_status ORDER BY order_date) 
+          END AS Ranking
+FROM dannys_dinner_all;
+
+
+
+
+
+
