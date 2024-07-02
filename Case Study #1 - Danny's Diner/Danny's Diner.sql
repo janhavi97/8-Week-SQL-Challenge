@@ -68,7 +68,9 @@ WHERE a.RNK1 = 1;
 SELECT customer_id, product_name
 FROM
     (
-        SELECT s.customer_id, p.product_name, RANK() OVER(PARTITION BY s.customer_id ORDER BY s.order_date) AS RNK1
+        SELECT s.customer_id, 
+	       p.product_name, 
+	       RANK() OVER(PARTITION BY s.customer_id ORDER BY s.order_date) AS RNK1
         FROM dannys_diner.sales s
         JOIN dannys_diner.menu p
         ON s.product_id = p.product_id
@@ -167,7 +169,7 @@ SELECT * FROM dannys_dinner_all
 
 --Rank All The Things (Rank customer products but only for the records when customers are member)
 SELECT *, CASE WHEN member_status = 'N' then NULL 
-			         ELSE RANK () OVER (PARTITION BY customer_id, member_status ORDER BY order_date) 
+	       ELSE RANK () OVER (PARTITION BY customer_id, member_status ORDER BY order_date) 
           END AS Ranking
 FROM dannys_dinner_all;
 
