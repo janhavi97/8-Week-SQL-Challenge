@@ -1,16 +1,16 @@
 # **Case Study #1: [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)**
-![image](https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/8c10f66f-62c7-4ef9-84e5-62104d1d5744)
+![image](https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/eb3307be-c819-45a7-844d-f09a0a755b48)
 
 
-### **Introduction**
+## **Introduction**
 "Danny's Diner" specializes in sushi, curry, and ramen. The diner has captured basic operational data but needs assistance in leveraging this information to enhance customer service and operational efficiency.
 
 
-### **Problem Statement**
+## **Problem Statement**
 The goal is to analyze customer behavior, including visit patterns and spending habits, to personalize their dining experience. Insights from the data will also determine the viability of expanding the loyalty program and provide Danny's team with accessible datasets for ongoing analysis.
 
 
-### **Entity Relationship Diagram**
+## **Entity Relationship Diagram**
 <img width="543" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/9f575f20-1a75-43e2-a32e-0099b59b2f91">
 
 
@@ -20,7 +20,7 @@ The goal is to analyze customer behavior, including visit patterns and spending 
 3. Table 3 - Members: Records of when customers joined the loyalty program.
 
 
-### **Case Study Questions**
+## **Case Study Questions**
 - What is the total amount each customer spent at the restaurant?
 - How many days has each customer visited the restaurant?
 - What was the first item from the menu purchased by each customer?
