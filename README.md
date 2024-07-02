@@ -4,7 +4,7 @@ Welcome to my repository for the #8WeekSQLChallenge! This repository contains th
 
 A big shoutout to Danny Ma at Data with Danny for crafting such detailed and challenging SQL exercises!
 
-📚 Table of Contents
+### 📚 Table of Contents
 
 Explore my solutions for each case study by clicking on the links below:
 
