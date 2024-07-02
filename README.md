@@ -16,4 +16,5 @@ Explore my solutions for each case study by clicking on the links below:
 - Case Study #7: Balanced Tree
 - Case Study #8: Fresh Segments
 
+
 Feel free to dive into each solution, and let's connect if you have any questions or want to discuss SQL and data analytics!
