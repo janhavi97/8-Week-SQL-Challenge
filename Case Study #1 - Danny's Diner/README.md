@@ -1,6 +1,5 @@
 # **Case Study #1: [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)**
-![image](https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/eb3307be-c819-45a7-844d-f09a0a755b48)
-
+<img width="696" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/14e983dc-05ae-4662-9853-34540fe4074f">
 
 ## **Introduction**
 "Danny's Diner" specializes in sushi, curry, and ramen. The diner has captured basic operational data but needs assistance in leveraging this information to enhance customer service and operational efficiency.
