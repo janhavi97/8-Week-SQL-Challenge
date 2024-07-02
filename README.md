@@ -2,7 +2,7 @@
 
 Welcome to my repository for the #8WeekSQLChallenge! This repository contains the solutions for all eight engaging case studies provided by Data with Danny. Each solution highlights my SQL expertise, showcasing my ability to navigate complex queries and solve real-world data problems effectively.
 
-A big shoutout to Data with Danny for crafting such detailed and challenging SQL exercises!
+A big shoutout to [Data with Danny](https://8weeksqlchallenge.com/) for crafting such detailed and challenging SQL exercises!
 
 ### 📚 Table of Contents
 
