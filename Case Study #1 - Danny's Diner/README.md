@@ -8,7 +8,7 @@
 The goal is to analyze customer behavior, including visit patterns and spending habits, to personalize their dining experience. Insights from the data will also determine the viability of expanding the loyalty program and provide Danny's team with accessible datasets for ongoing analysis.
 
 ### **Entity Relationship Diagram**
-![image](https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/c0642090-69a8-472c-a4bc-82d1e3a34269)
+<img width="543" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/9f575f20-1a75-43e2-a32e-0099b59b2f91">
 
 ### **Tables Overview**
 Table 1 - Sales: Transactions recorded with customer IDs, order dates, and product IDs.
