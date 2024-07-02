@@ -1,4 +1,4 @@
-*8-Week SQL Challenges Repository*
+**8-Week SQL Challenges Repository**
 Welcome to my repository for the #8WeekSQLChallenge! This repository contains the solutions for all eight engaging case studies provided by Data with Danny. Each solution highlights my SQL expertise, showcasing my ability to navigate complex queries and solve real-world data problems effectively.
 
 A big shoutout to Danny Ma at Data with Danny for crafting such detailed and challenging SQL exercises!
