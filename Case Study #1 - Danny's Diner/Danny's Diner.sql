@@ -147,21 +147,21 @@ GROUP BY s.customer_id;
 
 
 --Join All The Things (Recreate the table with: customer_id, order_date, product_name, price, member (Y/N))
-WITH dannys_dinner_all AS (
-SELECT 
-  s.customer_id, 
-  s.order_date,  
-  p.product_name, 
-  p.price,
-  CASE WHEN m.join_date <= s.order_date THEN 'Y'
-       ELSE 'N' 
-  END AS member_status
-FROM dannys_diner.sales s
-JOIN dannys_diner.menu p
-ON s.product_id = p.product_id
-LEFT JOIN dannys_diner.members m
-ON s.customer_id = m.customer_id
-ORDER BY m.customer_id, s.order_date
+WITH dannys_dinner_all AS 
+(
+	SELECT 	s.customer_id, 
+  		s.order_date,  
+  		p.product_name, 
+  		p.price,
+  		CASE WHEN m.join_date <= s.order_date THEN 'Y'
+       		     ELSE 'N' 
+  		END AS member_status
+	FROM dannys_diner.sales s
+	JOIN dannys_diner.menu p
+	ON s.product_id = p.product_id
+	LEFT JOIN dannys_diner.members m
+	ON s.customer_id = m.customer_id
+	ORDER BY m.customer_id, s.order_date
 )
 
 SELECT * FROM dannys_dinner_all
