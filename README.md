@@ -7,7 +7,7 @@ A big shoutout to [Data with Danny](https://8weeksqlchallenge.com/) for crafting
 ### 📚 Table of Contents
 
 Explore my solutions for each case study by clicking on the links below:
-- Case Study #1: Danny's Diner
+- Case Study #1: [Danny's Diner](https://github.com/janhavi97/8-Week-SQL-Challenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner)
 - Case Study #2: Pizza Runner
 - Case Study #3: Foodie-Fi
 - Case Study #4: Data Bank
