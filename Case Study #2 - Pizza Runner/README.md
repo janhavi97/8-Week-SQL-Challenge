@@ -14,7 +14,7 @@ To secure seed funding and scale up the pizza delivery business, it's crucial to
 <img width="573" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/03bd399a-1333-4bd3-9dd6-97194a56ff3c">
 
 
-### **Tables Overview**
+## **Tables Overview**
 1. Table 1 - runners: Transactions recorded with runner IDs and registration dates.
 2. Table 2 - customer_orders: Details of each menu item including order ID, customer ID, pizza ID, exclusions, extras, and order time.
 3. Table 3 - runner_orders: Records of each order assigned to runners including order ID, runner ID, pickup time, distance, duration, and cancellation status.
@@ -23,7 +23,7 @@ To secure seed funding and scale up the pizza delivery business, it's crucial to
 6. Table 6 - pizza_toppings: Inventory of all available toppings including topping ID and topping name.
 
 
-## **Case Study Questions**
+### **Case Study Questions**
 ## A. Pizza Metrics
 - How many pizzas were ordered?
 - How many unique customer orders were made?
