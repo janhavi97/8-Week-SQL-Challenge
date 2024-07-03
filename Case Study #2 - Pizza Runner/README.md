@@ -22,9 +22,61 @@ To secure seed funding and scale up the pizza delivery business, it's crucial to
 5. Table 5 - pizza_recipes: Specifications of each pizza including pizza ID and the toppings used.
 6. Table 6 - pizza_toppings: Inventory of all available toppings including topping ID and topping name.
 
+## Data Cleaning & Transformation
+### Table: customer_orders
+<img width="1447" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/5632ecfc-e55f-408e-a20d-f58788fff725">
 
-### **Case Study Questions**
-## A. Pizza Metrics
+- Columns Affected: exclusions and extras
+- Issues: Contains NULL values and missing (blank) spaces.
+- Solution: Create a temporary table, replace all NULLS in these columns with blank spaces.
+
+```
+CREATE TEMP TABLE customer_orders_temp AS
+SELECT 	order_id, 
+		customer_id, 
+ 		pizza_id, 
+  		CASE 
+			WHEN exclusions IS NULL OR exclusions = 'null' THEN ' '
+			ELSE exclusions
+		END AS exclusions,
+		CASE
+			WHEN extras IS NULL OR extras = 'null' THEN ' '
+			ELSE extras
+		END AS extras,
+		order_time
+FROM pizza_runner.customer_orders;
+```
+
+```
+SELECT *
+FROM customer_orders_temp
+```
+<img width="1447" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/fc4210e3-a479-49a5-a4ba-e9e70080421e">
+
+
+### Table: runner_orders
+<img width="1449" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/f305c7ac-647c-4f64-a4fb-25965763e785">
+
+Issues:
+- exclusions and extras: Contain null values and blank spaces.
+- pickup_time: Contains null values.
+- distance: Contains "km" and null values.
+- duration: Contains "minutes", "minute", and null values.
+- cancellation: Contains NULL and 'null'.
+
+Solutions:
+- For exclusions and extras: Replace null values and blank spaces with ' '.
+- For pickup_time: Replace nulls with ' '.
+- For distance: Remove "km" and replace nulls with ' '.
+- For duration: Remove "minutes" and "minute", replace nulls with ' '.
+- For cancellation: Replace NULL and 'null' with ' '.
+
+Post-Cleanup: Alter pickup_time, distance, and duration columns to the correct data types for proper query execution.
+
+
+
+## **Case Study Questions**
+### A. Pizza Metrics
 - How many pizzas were ordered?
 - How many unique customer orders were made?
 - How many successful orders were delivered by each runner?
@@ -36,7 +88,7 @@ To secure seed funding and scale up the pizza delivery business, it's crucial to
 - What was the total volume of pizzas ordered for each hour of the day?
 - What was the volume of orders for each day of the week?
 
-## B. Runner and Customer Experience
+### B. Runner and Customer Experience
 - How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 - What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 - Is there any relationship between the number of pizzas and how long the order takes to prepare?
@@ -45,7 +97,7 @@ To secure seed funding and scale up the pizza delivery business, it's crucial to
 - What was the average speed for each runner for each delivery and do you notice any trend for these values?
 - What is the successful delivery percentage for each runner?
 
-## C. Ingredient Optimisation
+### C. Ingredient Optimisation
 - What are the standard ingredients for each pizza?
 - What was the most commonly added extra?
 - What was the most common exclusion?
@@ -58,7 +110,7 @@ To secure seed funding and scale up the pizza delivery business, it's crucial to
 - - For example: "Meat Lovers: 2xBacon, Beef, ... , Salami"
 - What is the total quantity of each ingredient used in all delivered pizzas sorted by most frequent first?
   
-## D. Pricing and Ratings
+### D. Pricing and Ratings
 - If a Meat Lovers pizza costs $12 and Vegetarian costs $10 and there were no charges for changes - how much money has Pizza Runner made so far if there are no delivery fees?
 - What if there was an additional $1 charge for any pizza extras?
 - - Add cheese is $1 extra
@@ -76,5 +128,5 @@ To secure seed funding and scale up the pizza delivery business, it's crucial to
   - Total number of pizzas
 - If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost for extras and each runner is paid $0.30 per kilometre traveled - how much money does Pizza Runner have left over after these deliveries?
 
-## E. Bonus Questions
+### E. Bonus Questions
 If owner wants to expand his range of pizzas - how would this impact the existing data design? Write an INSERT statement to demonstrate what would happen if a new Supreme pizza with all the toppings was added to the Pizza Runner menu?
