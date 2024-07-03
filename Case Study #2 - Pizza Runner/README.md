@@ -71,7 +71,35 @@ Solutions:
 - For duration: Remove "minutes" and "minute", replace nulls with ' '.
 - For cancellation: Replace NULL and 'null' with ' '.
 
+```
+CREATE TEMPORARY TABLE runner_orders_temp AS
+SELECT
+	order_id,
+	runner_id,
+	CASE
+		WHEN pickup_time = 'null' THEN ' '
+		ELSE pickup_time
+	END AS pick_up_time,
+	CASE
+		WHEN distance = 'null' THEN ' '
+		ELSE regexp_replace(distance, '[a-z]+', '')
+	END AS distance,
+	CASE
+		WHEN duration = 'null' THEN ' '
+		ELSE regexp_replace(duration, '[a-z]+', '')
+		END AS duration,
+	CASE
+		WHEN cancellation IN ('','null') OR cancellation IS NULL THEN ' '
+		ELSE cancellation
+		END AS cancellation               
+FROM pizza_runner.runner_orders;
+```
+
 Post-Cleanup: Alter pickup_time, distance, and duration columns to the correct data types for proper query execution.
+```
+SELECT * FROM runner_orders_temp;
+```
+<img width="1448" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/a06f2a38-5464-4707-a0b4-76204fbcf2df">
 
 
 
