@@ -88,12 +88,12 @@ AND exclusions IS NOT NULL AND extras IS NOT NULL;
 
 
 -- What was the total volume of pizzas ordered for each hour of the day?
-SELECT EXTRACT(HOUR FROM order_time) AS order_hour,
+SELECT DATE_PART('hour', order_time) AS order_hour,
        COUNT(*) AS total_pizzas_ordered
 FROM customer_orders_temp
 GROUP BY order_hour;
--- Highest volume of pizza ordered is at 13 (1:00 pm), 18 (6:00 pm) and 21 (9:00 pm).
--- Lowest volume of pizza ordered is at 11 (11:00 am), 19 (7:00 pm) and 23 (11:00 pm).
+-- Highest volume of pizza ordered is at 13 (1:00 pm), 18 (6:00 pm), 23 (11:00 pm) and 21 (9:00 pm).
+-- Lowest volume of pizza ordered is at 11 (11:00 am) and 19 (7:00 pm).
 
 
 -- What was the volume of orders for each day of the week?
