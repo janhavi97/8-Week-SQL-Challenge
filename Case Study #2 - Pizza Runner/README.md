@@ -27,8 +27,8 @@ To secure seed funding and scale up the pizza delivery business, it's crucial to
 <img width="1447" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/5632ecfc-e55f-408e-a20d-f58788fff725">
 
 - Columns Affected: exclusions and extras
-- Issues: Contains NULL values and missing (blank) spaces.
-- Solution: Create a temporary table, replace all NULLS in these columns with blank spaces.
+- Issues: Contains 'null' values and missing (blank) spaces.
+- Solution: Create a temporary table, replace all 'null' and blank spcaes in these columns with NULL.
 
 ```
 CREATE TEMP TABLE customer_orders_temp AS
@@ -36,11 +36,11 @@ SELECT 	order_id,
 		customer_id, 
  		pizza_id, 
   		CASE 
-			WHEN exclusions IS NULL OR exclusions = 'null' THEN ' '
+			WHEN exclusions IN ('null', '') THEN NULL
 			ELSE exclusions
 		END AS exclusions,
 		CASE
-			WHEN extras IS NULL OR extras = 'null' THEN ' '
+			WHEN extras IN ('null', '') THEN NULL
 			ELSE extras
 		END AS extras,
 		order_time
@@ -51,55 +51,60 @@ FROM pizza_runner.customer_orders;
 SELECT *
 FROM customer_orders_temp
 ```
-<img width="1447" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/fc4210e3-a479-49a5-a4ba-e9e70080421e">
+<img width="1447" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/79ece6b4-e339-47ad-b799-9708f23daef0">
 
 
 ### Table: runner_orders
 <img width="1449" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/f305c7ac-647c-4f64-a4fb-25965763e785">
 
 Issues:
-- exclusions and extras: Contain null values and blank spaces.
-- pickup_time: Contains null values.
-- distance: Contains "km" and null values.
-- duration: Contains "minutes", "minute", and null values.
-- cancellation: Contains NULL and 'null'.
+- pickup_time: Contains 'null'.
+- distance: Contains "km" and 'null'.
+- duration: Contains "minutes", "minute", and 'null'.
+- cancellation: Contains 'null' and blank spaces.
 
 Solutions:
-- For exclusions and extras: Replace null values and blank spaces with ' '.
-- For pickup_time: Replace nulls with ' '.
-- For distance: Remove "km" and replace nulls with ' '.
-- For duration: Remove "minutes" and "minute", replace nulls with ' '.
-- For cancellation: Replace NULL and 'null' with ' '.
+- For pickup_time: Replace 'null' with NULL.
+- For distance: Remove "km" and replace 'nulls' with NULL.
+- For duration: Remove "minutes" and "minute", replace 'null' with NULL.
+- For cancellation: Replace 'null' and blank spaces with NULL.
 
 ```
 CREATE TEMPORARY TABLE runner_orders_temp AS
 SELECT
-	order_id,
-	runner_id,
-	CASE
-		WHEN pickup_time = 'null' THEN ' '
-		ELSE pickup_time
-	END AS pick_up_time,
-	CASE
-		WHEN distance = 'null' THEN ' '
-		ELSE regexp_replace(distance, '[a-z]+', '')
-	END AS distance,
-	CASE
-		WHEN duration = 'null' THEN ' '
-		ELSE regexp_replace(duration, '[a-z]+', '')
-		END AS duration,
-	CASE
-		WHEN cancellation IN ('','null') OR cancellation IS NULL THEN ' '
-		ELSE cancellation
-		END AS cancellation               
+    order_id,
+    runner_id,
+    CASE
+        WHEN pickup_time = 'null' THEN NULL
+        ELSE pickup_time
+    END AS pick_up_time,
+    CASE
+        WHEN distance = 'null' THEN NULL
+        ELSE regexp_replace(distance, '[a-z]+', '', 'gi')
+    END AS distance,
+    CASE
+        WHEN duration = 'null' THEN NULL
+        ELSE regexp_replace(duration, '[a-z]+', '', 'gi')
+    END AS duration,
+    CASE
+        WHEN cancellation IN ('null', '') THEN NULL
+        ELSE cancellation
+    END AS cancellation
 FROM pizza_runner.runner_orders;
 ```
 
 Post-Cleanup: Alter pickup_time, distance, and duration columns to the correct data types for proper query execution.
 ```
+ALTER TABLE runner_orders_temp
+ALTER COLUMN pick_up_time TYPE TIMESTAMP USING pick_up_time::TIMESTAMP,
+ALTER COLUMN distance TYPE FLOAT USING CAST(trim(distance) AS FLOAT),
+ALTER COLUMN duration TYPE INTEGER USING CAST(trim(duration) AS INTEGER);
+```
+
+```
 SELECT * FROM runner_orders_temp;
 ```
-<img width="1448" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/a06f2a38-5464-4707-a0b4-76204fbcf2df">
+<img width="1447" alt="image" src="https://github.com/janhavi97/8-Week-SQL-Challenge/assets/30179560/e5426064-2c8f-4a51-903c-0bb617cb0fa3">
 
 
 
