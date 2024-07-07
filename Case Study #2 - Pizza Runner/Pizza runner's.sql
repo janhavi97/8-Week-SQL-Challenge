@@ -1,7 +1,20 @@
 -- A. Pizza Metrics
 -- How many pizzas were ordered?
+SELECT COUNT(1) AS pizza_count
+FROM customer_orders_temp;
+-- 14 pizzas were ordered
+
+
 -- How many unique customer orders were made?
+SELECT COUNT( DISTINCT order_id) AS unique_order_count
+FROM customer_orders_temp;
+-- 10 unique customer orders were made
+
+
 -- How many successful orders were delivered by each runner?
+
+
+
 -- How many of each type of pizza was delivered?
 -- How many Vegetarian and Meatlovers were ordered by each customer?
 -- What was the maximum number of pizzas delivered in a single order?
